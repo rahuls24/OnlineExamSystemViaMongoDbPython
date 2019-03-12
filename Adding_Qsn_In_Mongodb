@@ -1,0 +1,19 @@
+ch=input("enter y to add question")
+while(ch=='y'):
+    a={}
+    print("enter the question no")
+    qsnNo=int(input("enter the question number"))
+    print("Enter Qsn ")
+    qsn=input()
+    a.update({qsnNo:qsn})
+    opno1=input("enter option 1")
+    a.update({'a':opno1})
+    opno2=input("enter the 2nd option")
+    a.update({'b':opno2})
+    opno3=input("enter option 3")
+    a.update({'c':opno3})
+    opno4=input("enter option 4")
+    a.update({'d':opno4})
+    ch=input("y for add another")
+print(a)
+
