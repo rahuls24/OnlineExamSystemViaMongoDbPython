@@ -1,4 +1,5 @@
 ch=input("enter y to add question")
+b=[]
 while(ch=='y'):
     a={}
     print("enter the question no")
@@ -14,6 +15,9 @@ while(ch=='y'):
     a.update({'c':opno3})
     opno4=input("enter option 4")
     a.update({'d':opno4})
+    ans=input("enter the correct answer of the question")
+    a.update({'ans':ans})
+    b.append(a)
     ch=input("y for add another")
 print(a)
 
