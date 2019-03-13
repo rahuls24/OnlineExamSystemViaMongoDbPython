@@ -1,0 +1,29 @@
+student={'ID':'170310430',
+                  'Name': 'Sachin Kumar',
+                  'Password':'CS170310430',
+                  'Branch':'CSE',
+                   'Sex':'Male',
+                  'Collage':'Silicon Insitute Of Technology',
+                  'Email Id':'sachin10@outlook.com',
+                  'Perfer Language':'English',
+                  'type':'Student'
+                  }
+Instructor={'ID':'264209208',
+                      'Name':'Ramakant Achekar',
+                      'Password':'RAMA9208',
+                      'Sex':'Male',
+                      'Stream':'Physics',
+                      'Email Id':'rama123@gmail.com',
+                      'type':'Instructor'
+                     }
+Admin={'ID':'AD170310',
+                'Password':'SIL123',
+                'type':'Admin'
+                }
+                      
+                      
+                  
+                  
+                  
+                  
+                  
