@@ -1,0 +1,57 @@
+from pymongo import MongoClient 
+  
+try: 
+    conn = MongoClient() 
+    print("Connected successfully!!!") 
+except:   
+    print("Could not connect to MongoDB") 
+  
+# database 
+db = conn.Databassse1158134
+  
+# Created or Switched to collection names:USER
+collection = db.Usseer188144
+  
+Student={'ID':'170310430',
+                  'Name': 'Sachin Kumar',
+                  'Password':'CS170310430',
+                  'Branch':'CSE',
+                   'Sex':'Male',
+                  'Collage':'Silicon Insitute Of Technology',
+                  'Email Id':'sachin10@outlook.com',
+                  'Perfer Language':'English',
+                  'type':'Student'
+                  }
+Instructor={'ID':'264209208',
+                      'Name':'Ramakant Achekar',
+                      'Password':'RAMA9208',
+                      'Sex':'Male',
+                      'Stream':'Physics',
+                      'Email Id':'rama123@gmail.com',
+                       'University':'BPUT',
+                      'type':'Instructor'
+                     }
+Admin={'ID':'AD170310',
+                'Password':'SIL123',
+                'type':'Admin'
+}
+# Insert Data 
+rec_id1 = collection.insert_one(Student) 
+rec_id2 = collection.insert_one(Instructor) 
+rec_id3 = collection.insert_one(Admin)
+userid=input("Enter Your user id : ")
+pw=input("Enter Your Password : ")
+re1=collection.find_one({'ID':userid, 'Password': pw})
+if re1:
+    if re1['type']== 'Student':
+        print("login sucessful!")
+        print("Welcome Student")
+    elif re1['type']== 'Instructor':
+        print("Login Sucessful!")
+        print("Welcome Instructor")
+    else:
+        print("Login Sucessful!")
+        print("Welcome Admin")
+else:
+    print("Invalid Credentials!!")
+        
