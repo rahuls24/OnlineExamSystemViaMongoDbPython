@@ -1,0 +1,46 @@
+from pymongo import MongoClient 
+  
+try: 
+    conn = MongoClient() 
+    print("Connected successfully!!!") 
+except:   
+    print("Could not connect to MongoDB") 
+  
+# database 
+db = conn.databasse1
+  
+# Created or Switched to collection names:USER
+collection = db.useer
+  
+Student={'ID':'170310430',
+                  'Name': 'Sachin Kumar',
+                  'Password':'CS170310430',
+                  'Branch':'CSE',
+                   'Sex':'Male',
+                  'Collage':'Silicon Insitute Of Technology',
+                  'Email Id':'sachin10@outlook.com',
+                  'Perfer Language':'English',
+                  'type':'Student'
+                  }
+Instructor={'ID':'264209208',
+                      'Name':'Ramakant Achekar',
+                      'Password':'RAMA9208',
+                      'Sex':'Male',
+                      'Stream':'Physics',
+                      'Email Id':'rama123@gmail.com',
+                       'University':'BPUT',
+                      'type':'Instructor'
+                     }
+Admin={'ID':'AD170310',
+                'Password':'SIL123',
+                'type':'Admin'
+}
+# Insert Data 
+rec_id1 = collection.insert_one(Student) 
+rec_id2 = collection.insert_one(Instructor) 
+rec_id3 = collection.insert_one(Admin)
+  
+# Printing the data inserted 
+cursor = collection.find() 
+for record in cursor: 
+    print(record) 
