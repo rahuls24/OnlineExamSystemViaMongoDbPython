@@ -1,0 +1,47 @@
+from pymongo import MongoClient 
+  
+try: 
+    conn = MongoClient() 
+    print("Connected successfully!!!") 
+except:   
+    print("Could not connect to MongoDB") 
+  
+# database 
+db = conn.Dse1158e13423dzaaahha1eaaaafg
+  
+# Created or Switched to collection names:USER
+mycol = db.exam11e23dzahhha1eaaaagg
+def fun1():
+    ch='y'
+    b=[]
+    while(ch=='y'):
+        a={}
+        id=input("enter the question Id")
+        print("Enter Qsn ")
+        a.update({'id':id})
+        qsn=input()
+        a.update({id:qsn})
+        opno1=input("enter option 1")
+        a.update({'a':opno1})
+        opno2=input("enter the 2nd option")
+        a.update({'b':opno2})
+        opno3=input("enter option 3")
+        a.update({'c':opno3})
+        opno4=input("enter option 4")
+        a.update({'d':opno4})
+        ans=input("enter the correct answer of the question")
+        a.update({'ans':ans})
+        b.append(a)
+        ch=input("y for add another")
+    return b
+z=[]
+z=fun1()
+xy= mycol.insert_many(z)
+myquery = { "id": "1" }
+newvalues = { "$set": { "id": "24" } }
+
+mycol.update_one(myquery, newvalues)
+
+#print "customers" after the update:
+for x in mycol.find():
+  print(x) 
