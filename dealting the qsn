@@ -7,20 +7,20 @@ except:
     print("Could not connect to MongoDB") 
   
 # database 
-db = conn.Dse1158e13423dzaaaa1eaaaa
+db = conn.Dsegggggdffgggyy
   
 # Created or Switched to collection names:USER
-mycol = db.exam11e23dzaa1eaaaa
+mycol = db.exam11e23dfgfdgfgh
 def fun1():
     ch='y'
     b=[]
     while(ch=='y'):
         a={}
         id=input("enter the question Id")
+        a.update({'Id':id})
         print("Enter Qsn ")
-        a.update({'id':id})
         qsn=input()
-        a.update({id:qsn})
+        a.update({'Qsn':qsn})
         opno1=input("enter option 1")
         a.update({'a':opno1})
         opno2=input("enter the 2nd option")
@@ -37,8 +37,14 @@ def fun1():
 z=[]
 z=fun1()
 xy= mycol.insert_many(z)
-myquery = { "id": "1" }
-mycol.delete_one(myquery)
+def fun2():
+    temp=input("Enter Qsn Id which You Want To Delete")
+    myquery={'Id':temp}
+    mycol.delete_one(myquery)
 cursor = mycol.find() 
 for record in cursor: 
+    print(record) 
+fun2()
+cursor1=mycol.find() 
+for record in cursor1: 
     print(record) 
