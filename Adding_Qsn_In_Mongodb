@@ -7,10 +7,10 @@ except:
     print("Could not connect to MongoDB") 
   
 # database 
-db = conn.Dse1158e13423dzaa1eaaaa
+db = conn.Dsegggggdff
   
 # Created or Switched to collection names:USER
-mycol = db.exam11e23dza1eaaa
+mycol = db.exam11e23dfgf
 def fun1():
     ch='y'
     b=[]
@@ -36,3 +36,7 @@ def fun1():
 z=[]
 z=fun1()
 xy= mycol.insert_many(z)
+print(xy.inserted_ids)
+cursor = mycol.find() 
+for record in cursor: 
+    print(record) 
