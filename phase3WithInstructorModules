@@ -47,8 +47,7 @@ def fun1():#function for adding the question
         a={}
         id=input("enter the question Id")
         a.update({'Id':id})
-        print("Enter Qsn ")
-        qsn=input()
+        qsn=input("enter the question")
         a.update({'Qsn':qsn})
         opno1=input("enter option 1")
         a.update({'a':opno1})
