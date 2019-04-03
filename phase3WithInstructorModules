@@ -7,11 +7,11 @@ except:
     print("Could not connect to MongoDB") 
   
 # database 
-db = conn.Databasee
+db = conn.Daabaseertrt
   
 # Created or Switched to collection names:USER
-mycol= db.Userr
-  
+mycol1= db.Usrrrtrt
+mycol=db.Exmrrtrt
 Student={'ID':'170310430',
                   'Name': 'Sachin Kumar',
                   'Password':'CS170310430',
@@ -24,7 +24,7 @@ Student={'ID':'170310430',
                   }
 Instructor={'ID':'264209208',
                       'Name':'Ramakant Achekar',
-                      'Password':'RAMA9208',
+                      'Password':'RAMA',
                       'Sex':'Male',
                       'Stream':'Physics',
                       'Email Id':'rama123@gmail.com',
@@ -36,9 +36,10 @@ Admin={'ID':'AD170310',
                 'type':'Admin'
 }
 # Insert Data 
-rec_id1 = mycol.insert_one(Student) 
-rec_id2 = mycol.insert_one(Instructor) 
-rec_id3 = mycol.insert_one(Admin)
+rec_id1 = mycol1.insert_one(Student) 
+rec_id2 = mycol1.insert_one(Instructor) 
+rec_id3 = mycol1.insert_one(Admin)
+
 def fun1():#function for adding the question
     ch='y'
     b=[]
@@ -62,16 +63,27 @@ def fun1():#function for adding the question
         b.append(a)
         ch=input("y for add another")
     return b
-def fun2():
+def fun2():#delating the qestion
     ch='y'
     while(ch=='y'):
         temp=input("Enter Qsn Id which You Want To Delete")
         myquery={'Id':temp}
         mycol.delete_one(myquery)
         ch=input("Enter y to delate more")
+def fun3():#Fetching The Present Qestion
+    for x in mycol.find():
+        k={}
+        k=x
+        print("\n")
+        for s, c in k.items():
+            if s=='_id':
+                pass
+            else:
+                print(s,"=",c)
+
 userid=input("Enter Your user id : ")
 pw=input("Enter Your Password : ")
-re1=mycol.find_one({'ID':userid, 'Password': pw})
+re1=mycol1.find_one({'ID':userid, 'Password': pw})
 if re1:
     if re1['type']== 'Student':
         print("login sucessful!")
@@ -80,16 +92,17 @@ if re1:
         print("Login Sucessful!")
         print("Welcome Instructor")
         temp1=1
-        while(temp1==1 or temp1==2):
+        while(temp1==1 or temp1==2 or temp1==3):
             
-            op=int(input("Enter 1 for Insert The Question \n Enter 2 For Deleate The Question \n Enter 3 for exit"))
+            op=int(input("Enter 1 for Insert The Question \n Enter 2 For Deleate The Question \n Enter 3 for fetching the question \n Enter 4 for exit"))
             if op==1:
-                fun1()
                 z=[]
                 z=fun1()
                 xy= mycol.insert_many(z)
             elif op==2:
                 fun2() 
+            elif op==3:
+                fun3()
             else:
                 temp1=op
     else:
