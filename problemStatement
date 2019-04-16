@@ -1,0 +1,5 @@
+Phase 1: Add a student document and an instructor document to a collection in MongoDB called ‘user’.
+Phase 2: Implement a function for user validation and sign-in.
+Phase 3: Implement a function to add multiple choice questions to another collection called ‘exam’
+through menu driven program if user is an instructor. Implement a function to answer a multiple choice
+question from the ‘exam’ collection through menu driven program if the user is a student.
