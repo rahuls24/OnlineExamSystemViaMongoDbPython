@@ -1,0 +1,493 @@
+from pymongo import MongoClient
+  
+try: 
+    conn = MongoClient() 
+    print("Connected successfully!!!") 
+except:   
+    print("Could not connect to MongoDB") 
+  
+# database 
+db = conn.Databasee
+  
+# Created or Switched to collection names:USER
+mycol1= db.Userr
+mycol=db.Examm
+Student={'ID':'170310430',
+                  'Name': 'Sachin Kumar',
+                  'Password':'CS170310430',
+                  'Branch':'CSE',
+                   'Sex':'Male',
+                  'Collage':'Silicon Insitute Of Technology',
+                  'Email Id':'sachin10@outlook.com',
+                  'Perfer Language':'English',
+                  'type':'Student'
+                  }
+Instructor={'ID':'264209208',
+                      'Name':'Ramakant Achekar',
+                      'Password':'RAMA',
+                      'Sex':'Male',
+                      'Stream':'Physics',
+                      'Email Id':'rama123@gmail.com',
+                       'University':'BPUT',
+                      'type':'Instructor'
+                     }
+Admin={'ID':'AD170310',
+                'Password':'SIL123',
+                'type':'Admin'
+}
+# Insert Data 
+rec_id1 = mycol1.insert_one(Student) 
+rec_id2 = mycol1.insert_one(Instructor) 
+rec_id3 = mycol1.insert_one(Admin)
+class Instructor:
+    def Insert(self):#function for adding the question
+        ch='y'
+        b=[]
+        while(ch=='y'):
+            a={}
+            a={"Id":input("enter the question Id"),
+            'qsn':input("Enter The Qsn"),'a':input("enter option 1"),'b':input("enter option 2"),
+             'c':input("enter option 3"),'d':input("enter option 4"),
+             'ans':input("enter the correct answer of the question")}
+            b.append(a)
+            ch=input("y for add another")
+        return b
+    def delate(self):#delating the qestion
+        ch='y'
+        while(ch=='y'):
+            temp=input("Enter Qsn Id which You Want To Delete")
+            myquery={'Id':temp}
+            mycol.delete_one(myquery)
+            ch=input("Enter y to delate more")
+    def fetch(self):#Fetching The Present Qestion
+        for x in mycol.find():
+            k={}
+            k=x
+            print("\n")
+            for s, c in k.items():
+                if s=='_id':
+                    pass
+                else:
+                    print(s,"   ",c)
+class Student:
+    def TakeExam(self):#For Display The qsns
+        score=0
+        for x in mycol.find():
+            k={}
+            k=x
+            print("\n")
+            for s, c in k.items():
+                if s=='_id' or s=='Id' or s=='ans':
+                    pass
+                elif s=='d':
+                    print(s,"   ",c)
+                    res=input("Enter Your Choice  :")
+                    if res==k['ans']:
+                        score+=1
+                else:
+                    print(s,"   ",c)
+        print("Your score is  ",score)
+        
+
+userid=input("Enter Your user id : ")
+pw=input("Enter Your Password : ")
+re1=mycol1.find_one({'ID':userid, 'Password': pw})
+if re1:
+    if re1['type']== 'Student':
+        print("login sucessful!")
+        print("Welcome Student")
+        st11=Student()
+        st11.TakeExam()
+    elif re1['type']== 'Instructor':
+        print("Login Sucessful!")
+        print("Welcome Instructor")
+        temp1=1
+        ins=Instructor()
+        while(temp1==1 or temp1==2 or temp1==3):
+            
+            op=int(input("Enter 1 for Insert The Question \n Enter 2 For Deleate The Question \n Enter 3 for fetching the question \n Enter 4 for exit"))
+            if op==1:
+                z=[]
+                z=ins.Insert()
+                xy= mycol.insert_many(z)
+            elif op==2:
+                ins.delate() 
+            elif op==3:
+                ins.fetch()
+            else:
+                temp1=op
+    else:
+        print("Login Sucessful!")
+        print("Welcome Admin")
+else:
+    print("Invalid Credentials!!")
+        from pymongo import MongoClient
+  
+try: 
+    conn = MongoClient() 
+    print("Connected successfully!!!") 
+except:   
+    print("Could not connect to MongoDB") 
+  
+# database 
+db = conn.Databasee
+  
+# Created or Switched to collection names:USER
+mycol1= db.Userr
+mycol=db.Examm
+Student={'ID':'170310430',
+                  'Name': 'Sachin Kumar',
+                  'Password':'CS170310430',
+                  'Branch':'CSE',
+                   'Sex':'Male',
+                  'Collage':'Silicon Insitute Of Technology',
+                  'Email Id':'sachin10@outlook.com',
+                  'Perfer Language':'English',
+                  'type':'Student'
+                  }
+Instructor={'ID':'264209208',
+                      'Name':'Ramakant Achekar',
+                      'Password':'RAMA',
+                      'Sex':'Male',
+                      'Stream':'Physics',
+                      'Email Id':'rama123@gmail.com',
+                       'University':'BPUT',
+                      'type':'Instructor'
+                     }
+Admin={'ID':'AD170310',
+                'Password':'SIL123',
+                'type':'Admin'
+}
+# Insert Data 
+rec_id1 = mycol1.insert_one(Student) 
+rec_id2 = mycol1.insert_one(Instructor) 
+rec_id3 = mycol1.insert_one(Admin)
+class Instructor:
+    def Insert(self):#function for adding the question
+        ch='y'
+        b=[]
+        while(ch=='y'):
+            a={}
+            a={"Id":input("enter the question Id"),
+            'qsn':input("Enter The Qsn"),'a':input("enter option 1"),'b':input("enter option 2"),
+             'c':input("enter option 3"),'d':input("enter option 4"),
+             'ans':input("enter the correct answer of the question")}
+            b.append(a)
+            ch=input("y for add another")
+        return b
+    def delate(self):#delating the qestion
+        ch='y'
+        while(ch=='y'):
+            temp=input("Enter Qsn Id which You Want To Delete")
+            myquery={'Id':temp}
+            mycol.delete_one(myquery)
+            ch=input("Enter y to delate more")
+    def fetch(self):#Fetching The Present Qestion
+        for x in mycol.find():
+            k={}
+            k=x
+            print("\n")
+            for s, c in k.items():
+                if s=='_id':
+                    pass
+                else:
+                    print(s,"   ",c)
+class Student:
+    def TakeExam(self):#For Display The qsns
+        score=0
+        for x in mycol.find():
+            k={}
+            k=x
+            print("\n")
+            for s, c in k.items():
+                if s=='_id' or s=='Id' or s=='ans':
+                    pass
+                elif s=='d':
+                    print(s,"   ",c)
+                    res=input("Enter Your Choice  :")
+                    if res==k['ans']:
+                        score+=1
+                else:
+                    print(s,"   ",c)
+        print("Your score is  ",score)
+        
+
+userid=input("Enter Your user id : ")
+pw=input("Enter Your Password : ")
+re1=mycol1.find_one({'ID':userid, 'Password': pw})
+if re1:
+    if re1['type']== 'Student':
+        print("login sucessful!")
+        print("Welcome Student")
+        st11=Student()
+        st11.TakeExam()
+    elif re1['type']== 'Instructor':
+        print("Login Sucessful!")
+        print("Welcome Instructor")
+        temp1=1
+        ins=Instructor()
+        while(temp1==1 or temp1==2 or temp1==3):
+            
+            op=int(input("Enter 1 for Insert The Question \n Enter 2 For Deleate The Question \n Enter 3 for fetching the question \n Enter 4 for exit"))
+            if op==1:
+                z=[]
+                z=ins.Insert()
+                xy= mycol.insert_many(z)
+            elif op==2:
+                ins.delate() 
+            elif op==3:
+                ins.fetch()
+            else:
+                temp1=op
+    else:
+        print("Login Sucessful!")
+        print("Welcome Admin")
+else:
+    print("Invalid Credentials!!")
+        from pymongo import MongoClient
+  
+try: 
+    conn = MongoClient() 
+    print("Connected successfully!!!") 
+except:   
+    print("Could not connect to MongoDB") 
+  
+# database 
+db = conn.Databasee
+  
+# Created or Switched to collection names:USER
+mycol1= db.Userr
+mycol=db.Examm
+Student={'ID':'170310430',
+                  'Name': 'Sachin Kumar',
+                  'Password':'CS170310430',
+                  'Branch':'CSE',
+                   'Sex':'Male',
+                  'Collage':'Silicon Insitute Of Technology',
+                  'Email Id':'sachin10@outlook.com',
+                  'Perfer Language':'English',
+                  'type':'Student'
+                  }
+Instructor={'ID':'264209208',
+                      'Name':'Ramakant Achekar',
+                      'Password':'RAMA',
+                      'Sex':'Male',
+                      'Stream':'Physics',
+                      'Email Id':'rama123@gmail.com',
+                       'University':'BPUT',
+                      'type':'Instructor'
+                     }
+Admin={'ID':'AD170310',
+                'Password':'SIL123',
+                'type':'Admin'
+}
+# Insert Data 
+rec_id1 = mycol1.insert_one(Student) 
+rec_id2 = mycol1.insert_one(Instructor) 
+rec_id3 = mycol1.insert_one(Admin)
+class Instructor:
+    def Insert(self):#function for adding the question
+        ch='y'
+        b=[]
+        while(ch=='y'):
+            a={}
+            a={"Id":input("enter the question Id"),
+            'qsn':input("Enter The Qsn"),'a':input("enter option 1"),'b':input("enter option 2"),
+             'c':input("enter option 3"),'d':input("enter option 4"),
+             'ans':input("enter the correct answer of the question")}
+            b.append(a)
+            ch=input("y for add another")
+        return b
+    def delate(self):#delating the qestion
+        ch='y'
+        while(ch=='y'):
+            temp=input("Enter Qsn Id which You Want To Delete")
+            myquery={'Id':temp}
+            mycol.delete_one(myquery)
+            ch=input("Enter y to delate more")
+    def fetch(self):#Fetching The Present Qestion
+        for x in mycol.find():
+            k={}
+            k=x
+            print("\n")
+            for s, c in k.items():
+                if s=='_id':
+                    pass
+                else:
+                    print(s,"   ",c)
+class Student:
+    def TakeExam(self):#For Display The qsns
+        score=0
+        for x in mycol.find():
+            k={}
+            k=x
+            print("\n")
+            for s, c in k.items():
+                if s=='_id' or s=='Id' or s=='ans':
+                    pass
+                elif s=='d':
+                    print(s,"   ",c)
+                    res=input("Enter Your Choice  :")
+                    if res==k['ans']:
+                        score+=1
+                else:
+                    print(s,"   ",c)
+        print("Your score is  ",score)
+        
+
+userid=input("Enter Your user id : ")
+pw=input("Enter Your Password : ")
+re1=mycol1.find_one({'ID':userid, 'Password': pw})
+if re1:
+    if re1['type']== 'Student':
+        print("login sucessful!")
+        print("Welcome Student")
+        st11=Student()
+        st11.TakeExam()
+    elif re1['type']== 'Instructor':
+        print("Login Sucessful!")
+        print("Welcome Instructor")
+        temp1=1
+        ins=Instructor()
+        while(temp1==1 or temp1==2 or temp1==3):
+            
+            op=int(input("Enter 1 for Insert The Question \n Enter 2 For Deleate The Question \n Enter 3 for fetching the question \n Enter 4 for exit"))
+            if op==1:
+                z=[]
+                z=ins.Insert()
+                xy= mycol.insert_many(z)
+            elif op==2:
+                ins.delate() 
+            elif op==3:
+                ins.fetch()
+            else:
+                temp1=op
+    else:
+        print("Login Sucessful!")
+        print("Welcome Admin")
+else:
+    print("Invalid Credentials!!")
+        from pymongo import MongoClient
+  
+try: 
+    conn = MongoClient() 
+    print("Connected successfully!!!") 
+except:   
+    print("Could not connect to MongoDB") 
+  
+# database 
+db = conn.Databasee
+  
+# Created or Switched to collection names:USER
+mycol1= db.Userr
+mycol=db.Examm
+Student={'ID':'170310430',
+                  'Name': 'Sachin Kumar',
+                  'Password':'CS170310430',
+                  'Branch':'CSE',
+                   'Sex':'Male',
+                  'Collage':'Silicon Insitute Of Technology',
+                  'Email Id':'sachin10@outlook.com',
+                  'Perfer Language':'English',
+                  'type':'Student'
+                  }
+Instructor={'ID':'264209208',
+                      'Name':'Ramakant Achekar',
+                      'Password':'RAMA',
+                      'Sex':'Male',
+                      'Stream':'Physics',
+                      'Email Id':'rama123@gmail.com',
+                       'University':'BPUT',
+                      'type':'Instructor'
+                     }
+Admin={'ID':'AD170310',
+                'Password':'SIL123',
+                'type':'Admin'
+}
+# Insert Data 
+rec_id1 = mycol1.insert_one(Student) 
+rec_id2 = mycol1.insert_one(Instructor) 
+rec_id3 = mycol1.insert_one(Admin)
+class Instructor:
+    def Insert(self):#function for adding the question
+        ch='y'
+        b=[]
+        while(ch=='y'):
+            a={}
+            a={"Id":input("enter the question Id"),
+            'qsn':input("Enter The Qsn"),'a':input("enter option 1"),'b':input("enter option 2"),
+             'c':input("enter option 3"),'d':input("enter option 4"),
+             'ans':input("enter the correct answer of the question")}
+            b.append(a)
+            ch=input("y for add another")
+        return b
+    def delate(self):#delating the qestion
+        ch='y'
+        while(ch=='y'):
+            temp=input("Enter Qsn Id which You Want To Delete")
+            myquery={'Id':temp}
+            mycol.delete_one(myquery)
+            ch=input("Enter y to delate more")
+    def fetch(self):#Fetching The Present Qestion
+        for x in mycol.find():
+            k={}
+            k=x
+            print("\n")
+            for s, c in k.items():
+                if s=='_id':
+                    pass
+                else:
+                    print(s,"   ",c)
+class Student:
+    def TakeExam(self):#For Display The qsns
+        score=0
+        for x in mycol.find():
+            k={}
+            k=x
+            print("\n")
+            for s, c in k.items():
+                if s=='_id' or s=='Id' or s=='ans':
+                    pass
+                elif s=='d':
+                    print(s,"   ",c)
+                    res=input("Enter Your Choice  :")
+                    if res==k['ans']:
+                        score+=1
+                else:
+                    print(s,"   ",c)
+        print("Your score is  ",score)
+        
+
+userid=input("Enter Your user id : ")
+pw=input("Enter Your Password : ")
+re1=mycol1.find_one({'ID':userid, 'Password': pw})
+if re1:
+    if re1['type']== 'Student':
+        print("login sucessful!")
+        print("Welcome Student")
+        st11=Student()
+        st11.TakeExam()
+    elif re1['type']== 'Instructor':
+        print("Login Sucessful!")
+        print("Welcome Instructor")
+        temp1=1
+        ins=Instructor()
+        while(temp1==1 or temp1==2 or temp1==3):
+            
+            op=int(input("Enter 1 for Insert The Question \n Enter 2 For Deleate The Question \n Enter 3 for fetching the question \n Enter 4 for exit"))
+            if op==1:
+                z=[]
+                z=ins.Insert()
+                xy= mycol.insert_many(z)
+            elif op==2:
+                ins.delate() 
+            elif op==3:
+                ins.fetch()
+            else:
+                temp1=op
+    else:
+        print("Login Sucessful!")
+        print("Welcome Admin")
+else:
+    print("Invalid Credentials!!")
+        
